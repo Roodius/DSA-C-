@@ -17,7 +17,7 @@ class Node{
             next = NULL;
         }
     }
-}   
+};   
 
 class List{ 
     Node* head;
@@ -86,8 +86,9 @@ class List{
             temp->next = newnodew;
         }
     }
+
     //search key
-    void Search(int key){
+    int Search(int key){
         Node* temp = head;
         int idx = 0;
         while (temp != NULL)
@@ -102,7 +103,7 @@ class List{
     }
     
     // helper funtion 
-    int help(int key){
+    int help(Node* temp,int key){
         if(temp == NULL) {return -1;}
 
         if(temp->data == key){
@@ -135,8 +136,10 @@ class List{
         
     }
 
-}
+};
 
 int main(){
 
+
+    return 0;
 }
