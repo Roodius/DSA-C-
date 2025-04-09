@@ -20,9 +20,10 @@ class Node{
 };   
 
 class List{ 
+    
+    public:
     Node* head;
     Node* tail;
-    public:
     List(){
         head = NULL;
         tail = NULL;
@@ -36,7 +37,7 @@ class List{
     // push_front 
     void push_front(int val){
         Node* newnode = new Node(val);
-        if(head = NULL){
+        if(head == NULL){
             head = tail = newnode;
         } else {
             newnode->next = head;
@@ -136,10 +137,68 @@ class List{
         
     }
 
-};
+    //print
+    void print(){
+        Node* temp = head;
+        while (temp != NULL)
+        {
+            cout << temp->data;
+            temp = temp->next;
+        }
+        
+    }   
+    //size of list 
+    int size(){
+        Node* temp =head;
+        int count =0;
+        while (temp != NULL)
+        {
+            temp = temp->next;
+            count++;
+        }
+        return count;
+    }
+
+    // find And Remove Nth Node from End
+    void RemoveNthNode(int n){
+        Node* prev = head;
+        int sz = size();
+        for(int i=0; i<(sz -n); i++){
+            prev = prev->next;
+        }
+        prev->next = prev->next->next;
+    }
+
+    // Delete a loop in LL
+     bool isCycle(){
+        Node* slow = head;
+        Node* fast = head;
+
+        while (fast != NULL && fast->next != NULL )
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                cout << "cycle exists\n";
+                return true;  
+            }
+        }
+        cout << "cycles Does't exist\n";
+        return false;
+     }  
+
+};  
 
 int main(){
+    List ll;
+    ll.push_front(4);
+    ll.push_front(3);
+    ll.push_front(2);
+    ll.push_front(1);
 
+    ll.tail->next = ll.head;
+
+    ll.isCycle();
 
     return 0;
 }
