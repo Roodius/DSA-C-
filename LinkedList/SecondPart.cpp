@@ -142,7 +142,7 @@ class List{
         Node* temp = head;
         while (temp != NULL)
         {
-            cout << temp->data;
+            cout << temp->data << " -> ";
             temp = temp->next;
         }
         
@@ -187,6 +187,52 @@ class List{
         return false;
      }  
 
+     
+
+     // Remove cycle
+     void RemoveCycle(Node* head){   
+        // {detect cycle} => [cycle is exist or not]
+        Node* slow = head;
+        Node* fast = head;
+        bool iscycle = false;
+        while (fast != NULL && fast->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                cout << "Cycle Exist"<< endl;
+                iscycle = true;
+                break;
+            }
+        }
+        if(!iscycle){
+            cout << "Cycle doesn't Exist";
+            return;
+        }
+        
+        // {update slow pointer}
+        slow = head;
+        if(slow == fast){  // special case : tail -> head 
+            while (fast->next != slow)
+            {
+                fast = fast->next;
+            }   
+            fast->next = NULL;  // remove cycle
+            
+        } else {
+            Node* prev = fast;
+            while (slow != fast)
+            {
+                slow = slow->next;
+                prev = fast;        
+                fast = fast->next;
+            }
+            prev->next = NULL;  // remove cycle
+            
+        }
+     }
+     
+
 };  
 
 int main(){
@@ -198,7 +244,8 @@ int main(){
 
     ll.tail->next = ll.head;
 
-    ll.isCycle();
+    ll.RemoveCycle(ll.head);
+    ll.print();
 
     return 0;
 }
