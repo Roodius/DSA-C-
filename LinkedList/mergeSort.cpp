@@ -106,21 +106,50 @@ Node* spliteAtmid(Node* head){
     return slow; // slow => rightHead
 }
 
-// merge function
-    
+Node* merge(Node* left, Node* right){
+    List ans;
+    Node* i = left;
+    Node* j  = right;
 
+    while (i != NULL && j != NULL)
+    {
+        if(i->data <= j->data){
+            ans.push_back(i->data);
+            i = i->next;
+        } else {
+            ans.push_back(j->data);
+            j = j->next;
+        }
+    }
+        //{comaparing data }  less or greater
+    while (i != NULL)
+    {
+        ans.push_back(i->data);
+        i = i->next;
+    }
+    while (j != NULL)
+    {
+        ans.push_back(j->data);
+        j = j->next;
+    }
+    // returing a new List
+    return ans;
+}
+
+
+// merge function
 void mergeSort(Node* head){
     if(head == NULL || head->next == NULL){
         return;
     }
     Node* rigthHead = spliteAtmid(head);
-    mergeSort(head);
-    mergeSort(rigthHead);
+    Node* left = (head);
+    Node* right = (rigthHead);
 
-    merge(head,rigthHead);
+    return (left,right);   // head of sorted ll
 }
 
 int main(){
 
-    return 0;
+    return 0; 
 }
