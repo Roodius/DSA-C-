@@ -84,6 +84,17 @@ class List{
         
     }
 
+    void print(){
+        Node* temp = head;
+        while (temp != NULL)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        
+    }
+
+
 };
 
 // splitMiddle function return => Node
@@ -133,23 +144,40 @@ Node* merge(Node* left, Node* right){
         j = j->next;
     }
     // returing a new List
-    return ans;
+    return ans.head;
 }
 
 
 // merge function
-void mergeSort(Node* head){
+Node* mergeSort(Node* head){
     if(head == NULL || head->next == NULL){
-        return;
+        return head;
     }
     Node* rigthHead = spliteAtmid(head);
-    Node* left = (head);
-    Node* right = (rigthHead);
+    Node* left = mergeSort(head);
+    Node* right = mergeSort(rigthHead);
 
-    return (left,right);   // head of sorted ll
+    return merge(left,right);   // head of sorted ll
+
 }
 
+
 int main(){
+
+    List ll;
+    ll.push_back(4);
+    ll.push_back(3);
+    ll.push_back(2);
+    ll.push_back(1);
+
+    ll.print();
+
+    cout << endl;
+
+    ll.head = mergeSort(ll.head);
+
+    ll.print();
+
 
     return 0; 
 }
