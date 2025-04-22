@@ -19,15 +19,15 @@ class tack{
         stak.pop_back();
     }
 
-    T top(){
+    int top(){
         if(isEmpty()){
             cout << "Stack Is Empty Nothing is Exist" << endl;
         }
         int lastIdx = stak.size() -1;
-        return lastIdx
+        return lastIdx;
     }
 
-    void isEmpty(){
+    bool isEmpty(){
         if(stak.size() -1 == 0){
             cout << "Stack Is Empty Nothing is Exist" << endl;
         }
@@ -43,13 +43,11 @@ int main(){
     s.push(3);
     s.push(2);
     s.push(1);
-    while (!s.isEmpty())
+    while(!s.isEmpty())
     {
         cout << s.top() << " ";
         s.pop();
-    }
+    }1
     cout << endl;
-    
-
     return 0;
 }
