@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
+#include <string>
 
 template<class T>  // we need use a type of T : T is any Data type
 
@@ -19,35 +20,33 @@ class tack{
         stak.pop_back();
     }
 
-    int top(){
-        if(isEmpty()){
-            cout << "Stack Is Empty Nothing is Exist" << endl;
-        }
+    T top(){
+        // if(isEmpty()){
+        //     cout << "Stack Is Empty Nothing is Exist" << endl;
+        // }
         int lastIdx = stak.size() -1;
         return lastIdx;
     }
 
     bool isEmpty(){
-        if(stak.size() -1 == 0){
-            cout << "Stack Is Empty Nothing is Exist" << endl;
-        }
-    }
+       return stak.size() - 1 == 0;
+    }     
 
 
 };
 
 
 int main(){
-    tack<int>s;
-
-    s.push(3);
-    s.push(2);
-    s.push(1);
+    tack<char>s;
+    
+    s.push('c');
+    s.push('b');
+    s.push('a');
     while(!s.isEmpty())
     {
         cout << s.top() << " ";
         s.pop();
-    }1
+    }
     cout << endl;
     return 0;
 }
