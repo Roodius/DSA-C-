@@ -32,7 +32,6 @@ class tack{
        return stak.size() - 1 == 0;
     }     
 
-
 };
 
 
