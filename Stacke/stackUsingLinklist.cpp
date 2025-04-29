@@ -2,25 +2,27 @@
 using namespace std;
 #include <list>
 #include <vector>
+#include <stack>
 
 template<class T>
 
 class Node{
+    public:
+
     T data;
     Node* next;
 
-    public:
     Node(T val){
         data = val;
         next = NULL;
     }
 
-}
+};
 
 
 template<class T>
-class Stack{
-    Node* head;
+ class Stack{
+    Node<T>* head;
     public:
     Stack(){
         head = NULL; 
@@ -28,20 +30,27 @@ class Stack{
 
     void push(T val){
         // push-front
-        Node* newnode  = new Node(val);
+        Node<T>* newnode  = new Node<T>(val);
         if(head == NULL){
+            head = newnode;
+        }else {
+            newnode ->next = head;
             head = newnode;
         }
     }
     void pop(){
-        ll.pop_front();
+        // pop-front
+        Node<T>* temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
     }
     T top(){
-        return ll.front(); // => head
+        return head->data; // => head
     }
     
     bool isEmpty(){
-        return ll.size() == 0;
+        return head == NULL;
     }
     
 };
