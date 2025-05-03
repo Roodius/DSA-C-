@@ -17,7 +17,7 @@ using namespace std;
     s.push(val);
  }
 
-void reverse(stack<int>s){
+void reverse(stack<int>& s){
     if(s.empty()){
         return;
     }
