@@ -3,6 +3,8 @@
 #include <vector>
 using namespace std;
 
+
+
 void stockSpanProblem(vector<int> stock, vector<int>& span){
     stack<int>s;
     s.push(0);
