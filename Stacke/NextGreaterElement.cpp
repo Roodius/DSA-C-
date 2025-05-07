@@ -11,7 +11,7 @@ void nextGreater(vector<int>arr,vector<int>ans){
 
     for(idx = idx-1; idx >= 0; idx++){
         int curr = arr[idx];
-        while (!s.empty() && curr >= s.top())
+        while     (!s.empty() && curr >= s.top())
         {
             s.pop();
         }
@@ -22,7 +22,7 @@ void nextGreater(vector<int>arr,vector<int>ans){
             ans[idx]  = s.top();   
         }   
 
-        s.push(curr); 
+        s.push(curr);
         
     }
 
@@ -38,7 +38,6 @@ int main(){
     vector<int>ans = {0, 0, 0, 0, 0};
 
     nextGreater(arr,ans); // [5341268494]
-    
 
     return 0;
 }
