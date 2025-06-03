@@ -5,9 +5,11 @@ using namespace std;
 
 
 void MaxAreaHistogram(vector<int>height){
+    int n = height.size();
     stack<int>s;
-    vector<int>nsl;
-    vector<int>nsr;
+    vector<int>nsl(n);
+    vector<int>nsr(n);
+
     // {next smaller left }
     nsl[0] = -1;
     s.push(0);
@@ -31,7 +33,7 @@ void MaxAreaHistogram(vector<int>height){
     }
 
     // { next smaller right }
-    int n = height.size();
+    
     s.push(n-1);
     nsr[n-1] = n;
 
@@ -46,18 +48,26 @@ void MaxAreaHistogram(vector<int>height){
         } else {
             nsr[i] = s.top();
         }   
+    }// finding a a left and right smaller are done   
+     
+    int maxArea = 0;
+    for(int i=0; i<n; i++){
+        int ht = height[i];
+        int width = nsr[i] - nsl[i] - 1;
+
+        int Area  =  ht * width;
+        maxArea = max(Area,maxArea);
     }
 
-    // findin a a left and right smaller are done   
-
+    cout << "Max Area of Histograme : " << maxArea << endl;
 
 }
 
 int main(){
     vector<int>height = {2,1,5,6,2,3};
-    vector<int>ans = {0,0,0,0,0,0};
 
-    MaxArea(arr,ans);
+
+    MaxAreaHistogram(height);
 
     return 0;
 }
