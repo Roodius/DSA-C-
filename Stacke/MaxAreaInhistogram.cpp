@@ -4,6 +4,13 @@
 using namespace std;
 
 
+void printArr(vector<int> vec){
+    for(int i=0; i<vec.size(); i++){
+        cout << vec[i] << " ";
+    }
+    cout << endl; 
+}
+
 void MaxAreaHistogram(vector<int>height){
     int n = height.size();
     stack<int>s;
@@ -24,8 +31,10 @@ void MaxAreaHistogram(vector<int>height){
         } else {
             nsl[i] = s.top();
         }
-        s.push(curr);    
+        s.push(i);    
     }
+
+    printArr(nsl);
 
     while (!s.empty())
     {
@@ -48,6 +57,7 @@ void MaxAreaHistogram(vector<int>height){
         } else {
             nsr[i] = s.top();
         }   
+        s.push(i);
     }// finding a a left and right smaller are done   
      
     int maxArea = 0;
