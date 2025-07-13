@@ -113,10 +113,34 @@ class list{
         }
     }
     // Recursive Search
+    int helper(Node* temp, int key){
+        if(head == NULL){ cout << "List is empty" << endl; }
+
+        if(temp->data == key){
+            return 0;
+        }
+
+        int idx = helper(temp->next, key);
+
+        if(idx == -1){
+            return -1;
+        }
+
+        return idx+1;
+    }
+
+    int SearchRecursive(int key){
+        return helper(head, key);
+    }
     
+    // Reversed LL
+    void Reversed(){
+           
+    }
+
 };
 
 int main(){ 
-
+    list ll;
     return 0;
 }

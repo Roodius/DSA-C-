@@ -75,16 +75,77 @@ class list{
     }
 
     void pop_back(){
-        
+        if(head == NULL){
+            cout << "Empty" << endl;
+        }
+        Node* temp = head;
+        while (temp->next->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = NULL;
+        delete tail;
+        tail = temp;
     }
 
+    // inserting a Node in giving position
+    void insertInMiddle(int val, int pos ){
+        Node* newnode = new Node(int val);
+        Node* temp = head;
+
+        for(int i=0; i<pos-1; i++){
+            if(head == NULL) { cout << "list are Empty" << endl; }
+            temp = temp->next;
+        }
+        newnode->next = temp->next;
+        temp->next = newnode;
+
+    }    
+
+    // iterative search 
+    void iterativeSearch(int val){
+        Node* temp = head;
+        int idx = 0;
+        while (head != NULL)
+        {
+            if(temp->data == val){
+                return idx
+            }
+            temp = temp->next;
+            idx++;
+        }
+        return -1;
+    }
+
+    // recursive search
+
+    int helper(Node* temp,int key){
+        if(temp == NULL){
+            return -1;
+        }
+
+        if(temp->data == key){
+            return 0;
+        }
+
+        int idx = helper(temp->next, key);
+        if(idx == -1){
+            return -1;
+        }
+        return idx+1;
+    }
+
+    void RecursiveSearch(){
+        return helper(head,int key);
+    }   
+
+    // reverse a linked list 
+    // 3 pointer -> prev, curr ,next 
+    
     
 
+}       
 
-
-
-
-}
 
 
 
