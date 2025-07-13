@@ -95,8 +95,9 @@ class list{
         Node* temp = head;
         while (temp != NULL)
         {
-            temp = temp->next;
             std::cout << temp->data << " ";
+            temp = temp->next;
+            
         }
         std::cout << std::endl;
     }
@@ -120,12 +121,18 @@ class Queue{
     }
 
     int front(){
-        if (ll.head != NULL){ return ll.head->data;}
-        else{std::cout << "Queue are empty" << std::endl; return -1;}
+        if (ll.head != NULL)
+        { return ll.head->data;}
+        else
+        {std::cout << "Queue are empty" << std::endl; return -1;}
     }
 
     void print(){
         ll.print();
+    }
+
+    bool empty(){
+       return ll.head == NULL;
     }
 };
 
@@ -135,7 +142,15 @@ int main(){
     Queue Que;
 
     Que.push(4);
-    Que.print();
+    Que.push(5);
+    Que.front();
+    Que.empty();
+
+    while (!Que.empty())
+    {
+        std::cout << Que.front() << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
