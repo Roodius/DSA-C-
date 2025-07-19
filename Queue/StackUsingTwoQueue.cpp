@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
  // node Class
@@ -24,10 +25,10 @@ class Node{
      // List class
 template<class T>
 class List{
-    public:
+
     Node<T>* head;
     Node<T>* tail;
-
+    public:
     List(){
         head = NULL;
         tail = NULL;
@@ -100,9 +101,9 @@ class List{
 template<class T>
 class Queue{
 
-    public:
     List<T> ll;
 
+    public:
 
     // push
     void push(T val){ 
@@ -145,7 +146,9 @@ class Stack{
         while (!q2.Empty())
         {
             q1.push(q2.front());
+            q2.pop();
         }
+
     }
 
     // top 
