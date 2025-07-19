@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
+
+ // node Class
 template<class T>
 class Node{
     public:
     T data;
-    Node* next;
+    Node<T>* next;
 
     Node(T val){
         this->data = val;
@@ -19,10 +21,12 @@ class Node{
         }
     }
 };
+     // List class
 template<class T>
 class List{
-    Node* head;
-    Node* tail;
+    public:
+    Node<T>* head;
+    Node<T>* tail;
 
     List(){
         head = NULL;
@@ -31,7 +35,7 @@ class List{
 
     // push_front 
     void push_front(T val){
-        Node* newnode = new Node(val);
+        Node<T>* newnode = new Node<T>(val);
         if (head == NULL)
         {
             head = tail = newnode;
@@ -45,15 +49,16 @@ class List{
         void pop_front(){
             if (head == NULL){
                 cout << "Linked List" << endl;
+                return ;
             }
-            Node* temp = head;
+            Node<T>* temp = head;
             head = head->next;
-            head->next = NULL;
-            delete head;            
+            temp->next = NULL;
+            delete temp;            
         }
     //push_back 
-    void push_back(int val){
-        Node* newnode = new Node(val);
+    void push_back(T val){
+        Node<T>* newnode = new  Node<T>(val);
         if (head == NULL)
         {
             head = tail = newnode;
@@ -68,9 +73,10 @@ class List{
         if (head == NULL)
         {
             cout << "empty LL" << endl;
+            return;
         }
-        Node* temp = head;
-        while (temp->next->next != NULL)
+        Node<T>* temp = head;
+        while (temp->next != tail)
         {
             temp = temp->next;
         }
@@ -80,17 +86,26 @@ class List{
     }
 
     // top
-    void top(){
+    T top(){
         return head->data;
+    }
+
+    bool isEmpty(){
+        return head == NULL;
     }
 
 };
 
+ // Queue using LinkedList
+template<class T>
 class Queue{
-    List ll;
+
+    public:
+    List<T> ll;
+
 
     // push
-    void push(int val){ 
+    void push(T val){ 
         ll.push_back(val);
     }
 
@@ -100,23 +115,70 @@ class Queue{
     }
 
     //front
-    int front(){
-        ll.top();
+    T front(){
+       return ll.top();
     }
+
+    bool Empty(){
+        return ll.isEmpty();
+    }
+
 };
 
+
+template<class T>
 class Stack{
-    Queue q1, q2;
+            public:
+    Queue<T> q1;
+    Queue<T> q2;
+
 
     //push
-    void push(){
-            
+    void push(T val){   
+        while (!q1.Empty())
+        {
+            q2.push(q1.front());
+        }
+
+        q1.push(val);
+
+        while (!q2.Empty())
+        {
+            q1.push(q2.front());
+        }
     }
 
-}
+    // top 
+    T top(){
+        return q1.front();
+    }
+
+    //pop 
+    void pop(){
+        q1.pop();
+    }
+
+    //empty
+    bool isEmpty(){
+        return q1.Empty();
+    }
+
+};
 
 
 int main(){
+    Stack<int> s1;
 
+    s1.push(1);
+    s1.push(2);
+    s1.push(3);
+    s1.push(4);
+
+    while (!s1.isEmpty())
+    {
+        cout << s1.top() << " ";
+        s1.pop();
+    }
+    cout << endl;
     return 0;
 }
