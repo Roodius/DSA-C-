@@ -23,13 +23,14 @@ int answer(int arr[], int w) {
     
 }
 
+
+
 int main(){
     int arr[7] = {3,8,2,5,7,6,12};
     int w = 4;
     int ans = answer(arr, w);
 
     cout << "max number: " << ans << endl;
-
 
 return 0;
 }
