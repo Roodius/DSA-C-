@@ -153,8 +153,6 @@ class HashTable {
                 prev = temp;
                 temp = temp->next;
         }
-        
-
 
     }
 
