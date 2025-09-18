@@ -68,6 +68,8 @@ bool searchKey(Node* root, int key){     // 0 (h)
         return searchKey(root->right,key);} // right subtree
 }
 
+// deletion
+
 int main(){
     // int arr[6] = {5,1,3,4,2,7};
     int arr2[9] = {8,5,3,1,4,6,10,11,14};
