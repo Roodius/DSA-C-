@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // node building
@@ -16,7 +17,7 @@ class Node {
 
 };
 
-// insertion logic or function
+// ----------insertion logic or function ---------
 Node* insert(Node* root, int val){  // o(logn)
     if (root == NULL) // base cases
     {
@@ -35,7 +36,7 @@ Node* insert(Node* root, int val){  // o(logn)
     return root;
 }
 
-// build BST
+//---------- build BST -------------
 Node* buildBST(int arr[], int n){
     Node* root  = NULL;
 
@@ -57,7 +58,7 @@ void inorder(Node* root){
     inorder(root->right);
 }   
 
-// search key in BST
+//---------- search key in BST ---------
 bool searchKey(Node* root, int key){     // 0 (h)
     if (root == NULL){ return false;} // base case
     if (root->data == key){ return true;} // found base case
@@ -78,7 +79,7 @@ Node* getInorderSuccessor(Node* root){
     
 }
 
-// deletion
+// ---------- deletion -------------
 Node* deleteNode(Node* root, int val){
     if (root == NULL)
     {
@@ -133,6 +134,48 @@ void PrintInRange(Node* root, int start, int end){
     }
 }
 
+// ---------------------------------------------------
+// helper function for print vector
+void printpath(vector<int>path){
+    cout << " path: ";
+    for (int i = 0; i < path.size(); i++)
+    {
+        cout << path[i] << " ";
+    }
+    cout << endl;
+    
+}
+
+// helper function to Root to leaf
+void pathHelper(Node* root,vector<int> &path){
+    if (root == NULL)
+    {
+        return;
+    }
+    
+
+    path.push_back(root->data);
+
+    if (root->left == NULL && root->right == NULL)  // leaf condition
+    {
+        printpath(path); // print
+        path.pop_back(); //pop 
+        return;   // back track
+    }
+
+    pathHelper(root->left,path); // left subtree
+    pathHelper(root->right,path); // right subtree
+
+    path.pop_back();
+}
+
+// Root to leaf Path 
+void RootToLeaf(Node* root){
+    vector<int> path;
+    pathHelper(root,path);
+    
+}
+// --------------------------------------------------------
 
 int main(){
     // int arr[6] = {5,1,3,4,2,7};
@@ -141,7 +184,7 @@ int main(){
     Node* root = buildBST(arr2,n);
     
 
-    PrintInRange(root,5,12);
+    RootToLeaf(root);
     cout << endl;
     return 0;
 }
