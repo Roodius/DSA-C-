@@ -177,14 +177,41 @@ void RootToLeaf(Node* root){
 }
 // --------------------------------------------------------
 
+//--------------- validate BST ----------------------------
+
+bool validatehelper(Node* root, Node* min, Node* max){
+    if (root == NULL)
+    {
+        return true;
+    }
+
+    if (min != NULL && root->data < min->data)
+    {
+        return false;
+    } 
+    if (max != NULL && root->data > max->data){
+         return false;
+    } 
+    
+    return validatehelper(root->left,min,root) && validatehelper(root->right,root,max);
+
+}
+
+bool ValidateBST(Node* root){
+    return validatehelper(root,NULL,NULL);
+} 
+
+// --------------------------------------------------------
+
+
 int main(){
     // int arr[6] = {5,1,3,4,2,7};
     int arr2[9] = {8,5,3,1,4,6,10,11,14};
     int n = sizeof(arr2)/sizeof(int);
     Node* root = buildBST(arr2,n);
     
-
-    RootToLeaf(root);
-    cout << endl;
+    root->data = 15;
+    cout << boolalpha << ValidateBST(root) << endl;
+    
     return 0;
 }
