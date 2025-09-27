@@ -67,5 +67,5 @@ int main(){
 
     cout << boolalpha << trie.search("their") << endl; // 1
 
-return 0;
+return 0;   
 }
