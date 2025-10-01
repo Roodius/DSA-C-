@@ -39,7 +39,7 @@ class Trie {
             }
             temp = temp->children[key[i]];
         }
-        temp->endeofword = true;
+        temp->endeofword  = true;
     }
 
     void LongestStringwithEof(Node* root,string &ans,string temp){
@@ -59,7 +59,7 @@ class Trie {
                 temp = ans;
             }
             LongestStringwithEof(child.second,ans,temp);
-            temp = temp.substr(0,temp.size() -1);   // removing ele
+            temp = temp.substr(0,temp.size() -1);   // removing ele when subtracked
             }
             
             
